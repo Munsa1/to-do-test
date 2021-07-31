@@ -1,34 +1,35 @@
-import './style.css';
+import { listItemComponent } from './components.js';
 
-let taskContainer = document.querySelector('#toDoList');
-let taskList = [
-    {
-        id: 1,
-        text: 'Wash clothes',
-        completed: false,
-    },
-    {
-        id: 2,
-        text: 'Message mails',
-        completed: false,
-    },
-    {
-        id: 3,
-        text: 'Put gas in genset ',
-        completed: false,
-    },
-    {
-        id: 4,
-        text: 'Attend the stand up meeting',
-        completed: false,
-    }
+const ITEMS = [
+  {
+    description: 'Take A Shower',
+    completed: true,
+    index: 0,
+  },
+  {
+    description: 'Have Breakfast',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Go For Work',
+    completed: false,
+    index: 2,
+  },
 ];
 
-taskList.forEach((item) => {
-    taskContainer.innerHTML  += `
-    <li class = "list-items"> ${item.text} <li>
-    `
+function sortItems(items = []) {
+  return items.sort((a, b) => a.index - b.index);
+}
+
+function addItemsToDOM(items = []) {
+  const list = document.getElementById('items');
+  list.innerHTML = '';
+  sortItems(items).forEach((item) => {
+    list.appendChild(listItemComponent(item));
+  });
+}
+
+window.addEventListener('load', () => {
+  addItemsToDOM(ITEMS);
 });
-
-
-
