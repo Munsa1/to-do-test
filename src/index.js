@@ -2,14 +2,6 @@ import renderItems from './components.js';
 import store from './todo-store.js';
 import './style.css';
 
-const form = document.getElementById('add-todo');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const description = form.elements[0].value;
-  store.addTodo(description);
-  form.elements[0].value = '';
-});
-
 window.addEventListener('load', () => {
   document.getElementById('clear-btn').addEventListener('click', () => {
     store.clearCompleted();
